@@ -1,8 +1,8 @@
-# %%
+# %% Import
 import numpy as np
 import pandas as pd
 
-# %%
+# %% KNN Class
 class KNN:
     def __init__(self, k=3, X=None, Y=None):
         self.k = k
@@ -48,7 +48,6 @@ def confusion_matrix(y_true, y_pred):
     for index, val in enumerate(y_true):
         confusion_matrix[labels.index(y_pred[index])][labels.index(val)] += 1
     return labels, confusion_matrix
-
 
 def display_confusion_matrix(confusion_matrix, labels):
     print("\t", "\t".join(labels))
@@ -103,13 +102,12 @@ def train_set(filename, batch_size, k, distance=euclidean_distance):
     train_model(knn, X_test, y_test, distance)
     return knn
 
-
 def predict_set(knn, filename, has_labels=True, distance=euclidean_distance):
     df = process_data(filename, has_labels)
     X_test, y_test = get_test_sets(df, has_labels)
     return train_model(knn, X_test, y_test, distance)
 
-# %%
+# %% Main
 if __name__ == '__main__':
     data_folder = "./data"
     train_data = data_folder + "/data.csv"
@@ -131,5 +129,3 @@ if __name__ == '__main__':
 
     with open("./output/gabison_yoan.txt", "w") as f:
         f.write("\n".join(predictions))
-
-# %%
